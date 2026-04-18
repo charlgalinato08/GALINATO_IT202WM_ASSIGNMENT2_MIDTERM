@@ -1,8 +1,4 @@
-﻿// ============================================================
-// HabitTrackerForm.cs  —  CHILD FORM B: Habit Tracker
-// Users add habits and mark them as done.
-// Done habits move to the completed list.
-// ============================================================
+﻿
 using System;
 using System.Windows.Forms;
 
@@ -10,7 +6,7 @@ namespace ProductivityTracker
 {
     public class HabitTrackerForm : Form
     {
-        // ── Controls ──────────────────────────────────────────────────────
+       
         private Label lblTitle;
         private Label lblHabitName;
         private TextBox txtHabitName;
@@ -33,14 +29,14 @@ namespace ProductivityTracker
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new System.Drawing.Point(30, 30);
 
-            // ── Title ──────────────────────────────────────────────────────
+            
             lblTitle = new Label();
             lblTitle.Text = "Habit Tracker";
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);
             lblTitle.Location = new System.Drawing.Point(20, 15);
             lblTitle.Size = new System.Drawing.Size(250, 30);
 
-            // ── Habit Name input ───────────────────────────────────────────
+            
             lblHabitName = new Label();
             lblHabitName.Text = "Habit Name:";
             lblHabitName.Location = new System.Drawing.Point(20, 60);
@@ -68,7 +64,7 @@ namespace ProductivityTracker
                 }
             };
 
-            // ── Buttons ────────────────────────────────────────────────────
+           
             btnAddHabit = new Button();
             btnAddHabit.Text = "Add Habit";
             btnAddHabit.Location = new System.Drawing.Point(130, 95);
@@ -87,7 +83,7 @@ namespace ProductivityTracker
             btnMarkDone.FlatStyle = FlatStyle.Flat;
             btnMarkDone.Click += new EventHandler(btnMarkDone_Click);
 
-            // ── Habits list (pending) ──────────────────────────────────────
+           
             lblHabits = new Label();
             lblHabits.Text = "Habits To Do:";
             lblHabits.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
@@ -99,7 +95,7 @@ namespace ProductivityTracker
             lstHabits.Size = new System.Drawing.Size(420, 130);
             lstHabits.Font = new System.Drawing.Font("Segoe UI", 10);
 
-            // ── Completed habits list ──────────────────────────────────────
+            
             lblCompleted = new Label();
             lblCompleted.Text = "✅ Completed Habits:";
             lblCompleted.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
@@ -113,7 +109,7 @@ namespace ProductivityTracker
             lstCompleted.Font = new System.Drawing.Font("Segoe UI", 10);
             lstCompleted.ForeColor = System.Drawing.Color.SeaGreen;
 
-            // ── Add to form ────────────────────────────────────────────────
+            
             this.Controls.Add(lblTitle);
             this.Controls.Add(lblHabitName);
             this.Controls.Add(txtHabitName);
@@ -125,7 +121,7 @@ namespace ProductivityTracker
             this.Controls.Add(lstCompleted);
         }
 
-        // ── Add Habit ──────────────────────────────────────────────────────
+        
         private void btnAddHabit_Click(object sender, EventArgs e)
         {
             try
@@ -149,12 +145,12 @@ namespace ProductivityTracker
             }
         }
 
-        // ── Mark selected habit as Done ────────────────────────────────────
+       
         private void btnMarkDone_Click(object sender, EventArgs e)
         {
             try
             {
-                // Make sure something is selected
+                
                 if (lstHabits.SelectedIndex == -1)
                 {
                     MessageBox.Show("Please select a habit to mark as done!", "No Selection",
@@ -162,7 +158,7 @@ namespace ProductivityTracker
                     return;
                 }
 
-                // Move from "To Do" list to "Completed" list
+                
                 string habit = lstHabits.SelectedItem.ToString();
                 lstCompleted.Items.Add("✔ " + habit);
                 lstHabits.Items.RemoveAt(lstHabits.SelectedIndex);
