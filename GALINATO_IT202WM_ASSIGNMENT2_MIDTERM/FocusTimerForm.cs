@@ -1,8 +1,4 @@
-﻿// ============================================================
-// FocusTimerForm.cs  —  CHILD FORM D: Focus Timer
-// User enters minutes, clicks Start to begin a countdown.
-// The timer ticks every second. Stop button pauses it.
-// ============================================================
+﻿
 using System;
 using System.Windows.Forms;
 
@@ -10,18 +6,18 @@ namespace ProductivityTracker
 {
     public class FocusTimerForm : Form
     {
-        // ── Controls ──────────────────────────────────────────────────────
+       
         private Label lblTitle;
         private Label lblMinutes;
         private TextBox txtMinutes;
         private Button btnStart;
         private Button btnStop;
-        private Label lblCountdown;      // The big countdown display
+        private Label lblCountdown;     
         private Label lblStatus;
 
-        // ── Timer (built-in Windows Forms timer) ──────────────────────────
+        
         private Timer countdownTimer;
-        private int remainingSeconds = 0; // How many seconds are left
+        private int remainingSeconds = 0; 
 
         public FocusTimerForm()
         {
@@ -36,14 +32,14 @@ namespace ProductivityTracker
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new System.Drawing.Point(70, 70);
 
-            // ── Title ──────────────────────────────────────────────────────
+           
             lblTitle = new Label();
             lblTitle.Text = "Focus Timer";
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);
             lblTitle.Location = new System.Drawing.Point(20, 15);
             lblTitle.Size = new System.Drawing.Size(200, 30);
 
-            // ── Minutes input ──────────────────────────────────────────────
+            
             lblMinutes = new Label();
             lblMinutes.Text = "Minutes:";
             lblMinutes.Location = new System.Drawing.Point(20, 60);
@@ -54,7 +50,7 @@ namespace ProductivityTracker
             txtMinutes.Size = new System.Drawing.Size(80, 23);
             txtMinutes.MaxLength = 3; // Max 999 minutes
 
-            // ── Big countdown label ────────────────────────────────────────
+           
             lblCountdown = new Label();
             lblCountdown.Text = "00:00";
             lblCountdown.Font = new System.Drawing.Font("Segoe UI", 48, System.Drawing.FontStyle.Bold);
@@ -63,7 +59,7 @@ namespace ProductivityTracker
             lblCountdown.Size = new System.Drawing.Size(260, 100);
             lblCountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // ── Buttons ────────────────────────────────────────────────────
+           
             btnStart = new Button();
             btnStart.Text = "▶ Start";
             btnStart.Location = new System.Drawing.Point(70, 220);
@@ -85,7 +81,7 @@ namespace ProductivityTracker
             btnStop.Enabled = false; // Disabled until timer starts
             btnStop.Click += new EventHandler(btnStop_Click);
 
-            // ── Status label ───────────────────────────────────────────────
+            
             lblStatus = new Label();
             lblStatus.Text = "Enter minutes and press Start.";
             lblStatus.Location = new System.Drawing.Point(20, 280);
@@ -93,7 +89,7 @@ namespace ProductivityTracker
             lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             lblStatus.ForeColor = System.Drawing.Color.Gray;
 
-            // ── Add to form ────────────────────────────────────────────────
+            
             this.Controls.Add(lblTitle);
             this.Controls.Add(lblMinutes);
             this.Controls.Add(txtMinutes);
@@ -103,7 +99,7 @@ namespace ProductivityTracker
             this.Controls.Add(lblStatus);
         }
 
-        // ── Setup the Timer component ──────────────────────────────────────
+        
         private void SetupTimer()
         {
             countdownTimer = new Timer();
@@ -111,12 +107,12 @@ namespace ProductivityTracker
             countdownTimer.Tick += new EventHandler(countdownTimer_Tick);
         }
 
-        // ── Start button ───────────────────────────────────────────────────
+        
         private void btnStart_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validate: must not be empty
+                
                 if (string.IsNullOrWhiteSpace(txtMinutes.Text))
                 {
                     MessageBox.Show("Please enter the number of minutes!", "Empty Field",
@@ -125,7 +121,7 @@ namespace ProductivityTracker
                     return;
                 }
 
-                // Validate: must be a number
+                
                 if (!int.TryParse(txtMinutes.Text, out int minutes))
                 {
                     MessageBox.Show("Please enter a valid number!", "Invalid Input",
@@ -134,7 +130,7 @@ namespace ProductivityTracker
                     return;
                 }
 
-                // Validate: must be positive
+                
                 if (minutes <= 0)
                 {
                     MessageBox.Show("Please enter a number greater than 0!", "Invalid Input",
@@ -142,7 +138,7 @@ namespace ProductivityTracker
                     return;
                 }
 
-                // Convert minutes to seconds and start
+                
                 remainingSeconds = minutes * 60;
                 UpdateCountdownDisplay();
 
@@ -160,7 +156,7 @@ namespace ProductivityTracker
             }
         }
 
-        // ── Stop button ────────────────────────────────────────────────────
+       
         private void btnStop_Click(object sender, EventArgs e)
         {
             countdownTimer.Stop();
@@ -171,7 +167,7 @@ namespace ProductivityTracker
             lblStatus.ForeColor = System.Drawing.Color.IndianRed;
         }
 
-        // ── Timer Tick (runs every 1 second) ──────────────────────────────
+        
         private void countdownTimer_Tick(object sender, EventArgs e)
         {
             remainingSeconds--; // Subtract 1 second
@@ -198,7 +194,7 @@ namespace ProductivityTracker
             }
         }
 
-        // ── Update the countdown display (MM:SS format) ────────────────────
+        
         private void UpdateCountdownDisplay()
         {
             int minutes = remainingSeconds / 60;
@@ -206,7 +202,7 @@ namespace ProductivityTracker
             lblCountdown.Text = $"{minutes:D2}:{seconds:D2}"; // e.g. 04:35
         }
 
-        // ── Stop the timer when the form is closed ─────────────────────────
+        
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             countdownTimer.Stop();
