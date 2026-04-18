@@ -1,8 +1,4 @@
-﻿// ============================================================
-// NotesJournalForm.cs  —  CHILD FORM C: Notes / Journal
-// A simple notepad where users can write and save notes.
-// Notes are saved to a .txt file on the desktop.
-// ============================================================
+﻿
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -11,7 +7,7 @@ namespace ProductivityTracker
 {
     public class NotesJournalForm : Form
     {
-        // ── Controls ──────────────────────────────────────────────────────
+      
         private Label lblTitle;
         private TextBox txtNotes;
         private Button btnSave;
@@ -30,14 +26,14 @@ namespace ProductivityTracker
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new System.Drawing.Point(50, 50);
 
-            // ── Title ──────────────────────────────────────────────────────
+            
             lblTitle = new Label();
             lblTitle.Text = "Notes / Journal";
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);
             lblTitle.Location = new System.Drawing.Point(20, 15);
             lblTitle.Size = new System.Drawing.Size(300, 30);
 
-            // ── Multi-line text box ────────────────────────────────────────
+            
             txtNotes = new TextBox();
             txtNotes.Location = new System.Drawing.Point(20, 55);
             txtNotes.Size = new System.Drawing.Size(440, 320);
@@ -60,7 +56,7 @@ namespace ProductivityTracker
                 }
             };
 
-            // ── Buttons ────────────────────────────────────────────────────
+            
             btnSave = new Button();
             btnSave.Text = "💾 Save Note";
             btnSave.Location = new System.Drawing.Point(20, 390);
@@ -79,7 +75,7 @@ namespace ProductivityTracker
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Click += new EventHandler(btnClear_Click);
 
-            // ── Status label (shows save confirmation) ─────────────────────
+            
             lblStatus = new Label();
             lblStatus.Text = "";
             lblStatus.Location = new System.Drawing.Point(280, 398);
@@ -87,7 +83,7 @@ namespace ProductivityTracker
             lblStatus.ForeColor = System.Drawing.Color.SeaGreen;
             lblStatus.Font = new System.Drawing.Font("Segoe UI", 9, System.Drawing.FontStyle.Italic);
 
-            // ── Add to form ────────────────────────────────────────────────
+            
             this.Controls.Add(lblTitle);
             this.Controls.Add(txtNotes);
             this.Controls.Add(btnSave);
@@ -95,7 +91,7 @@ namespace ProductivityTracker
             this.Controls.Add(lblStatus);
         }
 
-        // ── Save Note button ───────────────────────────────────────────────
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -107,11 +103,11 @@ namespace ProductivityTracker
                     return;
                 }
 
-                // Save to desktop as MyNotes.txt
+               
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string filePath = Path.Combine(desktopPath, "MyNotes.txt");
 
-                // Append the note with a timestamp
+                
                 string entry = $"\n--- {DateTime.Now} ---\n{txtNotes.Text.Trim()}\n";
                 File.AppendAllText(filePath, entry);
 
@@ -126,7 +122,7 @@ namespace ProductivityTracker
             }
         }
 
-        // ── Clear button ───────────────────────────────────────────────────
+        
         private void btnClear_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNotes.Text))
