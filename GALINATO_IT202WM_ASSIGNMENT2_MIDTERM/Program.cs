@@ -1,8 +1,4 @@
-﻿// ============================================================
-// Program.cs  —  APPLICATION ENTRY POINT
-// This is the starting point of the program.
-// It launches the MDI main form.
-// ============================================================
+﻿
 using System;
 using System.Windows.Forms;
 
