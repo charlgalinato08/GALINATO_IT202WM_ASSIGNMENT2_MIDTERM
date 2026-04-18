@@ -1,8 +1,4 @@
-﻿// ============================================================
-// DailyPlannerForm.cs  —  CHILD FORM A: Daily Planner
-// Users can add tasks with a priority level and view them
-// in a list. They can also clear all tasks.
-// ============================================================
+﻿
 using System;
 using System.Windows.Forms;
 
@@ -10,7 +6,7 @@ namespace ProductivityTracker
 {
     public class DailyPlannerForm : Form
     {
-        // ── Controls ──────────────────────────────────────────────────────
+       
         private Label lblTitle;
         private Label lblTaskName;
         private TextBox txtTaskName;
@@ -28,20 +24,20 @@ namespace ProductivityTracker
 
         private void SetupForm()
         {
-            // ── Form settings ──────────────────────────────────────────────
+            
             this.Text = "📅 Daily Planner";
             this.Size = new System.Drawing.Size(450, 500);
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new System.Drawing.Point(10, 10);
 
-            // ── Title label ───────────────────────────────────────────────
+            
             lblTitle = new Label();
             lblTitle.Text = "Daily Planner";
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);
             lblTitle.Location = new System.Drawing.Point(20, 15);
             lblTitle.Size = new System.Drawing.Size(200, 30);
 
-            // ── Task Name label and textbox ────────────────────────────────
+            
             lblTaskName = new Label();
             lblTaskName.Text = "Task Name:";
             lblTaskName.Location = new System.Drawing.Point(20, 60);
@@ -69,7 +65,7 @@ namespace ProductivityTracker
                 }
             };
 
-            // ── Priority label and combobox ───────────────────────────────
+            
             lblPriority = new Label();
             lblPriority.Text = "Priority:";
             lblPriority.Location = new System.Drawing.Point(20, 100);
@@ -84,7 +80,7 @@ namespace ProductivityTracker
             cboPriority.Items.Add("🟢 Low");
             cboPriority.SelectedIndex = 1; // Default: Medium
 
-            // ── Buttons ────────────────────────────────────────────────────
+            
             btnAddTask = new Button();
             btnAddTask.Text = "Add Task";
             btnAddTask.Location = new System.Drawing.Point(130, 140);
@@ -103,7 +99,7 @@ namespace ProductivityTracker
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Click += new EventHandler(btnClear_Click);
 
-            // ── Task list ──────────────────────────────────────────────────
+           
             lblTaskList = new Label();
             lblTaskList.Text = "Task List:";
             lblTaskList.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
@@ -115,7 +111,7 @@ namespace ProductivityTracker
             lstTasks.Size = new System.Drawing.Size(390, 220);
             lstTasks.Font = new System.Drawing.Font("Segoe UI", 10);
 
-            // ── Add controls to form ───────────────────────────────────────
+            
             this.Controls.Add(lblTitle);
             this.Controls.Add(lblTaskName);
             this.Controls.Add(txtTaskName);
@@ -127,12 +123,12 @@ namespace ProductivityTracker
             this.Controls.Add(lstTasks);
         }
 
-        // ── Add Task button clicked ────────────────────────────────────────
+        
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validation: task name must not be empty
+                
                 if (string.IsNullOrWhiteSpace(txtTaskName.Text))
                 {
                     MessageBox.Show("Please enter a task name!", "Empty Field",
@@ -141,12 +137,12 @@ namespace ProductivityTracker
                     return;
                 }
 
-                // Build the task string and add to list
+                
                 string priority = cboPriority.SelectedItem.ToString();
                 string task = $"{priority}  |  {txtTaskName.Text.Trim()}";
                 lstTasks.Items.Add(task);
 
-                // Clear the textbox after adding
+                
                 txtTaskName.Clear();
                 txtTaskName.Focus();
             }
@@ -157,7 +153,7 @@ namespace ProductivityTracker
             }
         }
 
-        // ── Clear All button clicked ───────────────────────────────────────
+        
         private void btnClear_Click(object sender, EventArgs e)
         {
             if (lstTasks.Items.Count == 0)
