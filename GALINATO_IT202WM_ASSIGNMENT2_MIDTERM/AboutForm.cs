@@ -1,7 +1,4 @@
-﻿// ============================================================
-// AboutForm.cs  —  CHILD FORM E: About
-// Shows system description, developer name, and version.
-// ============================================================
+﻿
 using System;
 using System.Windows.Forms;
 
@@ -22,7 +19,7 @@ namespace ProductivityTracker
             this.FormBorderStyle = FormBorderStyle.FixedDialog; // Fixed size
             this.MaximizeBox = false;
 
-            // ── App Icon / Title ───────────────────────────────────────────
+           
             Label lblAppName = new Label();
             lblAppName.Text = "🧠 Productivity & Habit Tracker";
             lblAppName.Font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold);
@@ -30,13 +27,13 @@ namespace ProductivityTracker
             lblAppName.Size = new System.Drawing.Size(380, 35);
             lblAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // ── Divider line ───────────────────────────────────────────────
+           
             Label divider = new Label();
             divider.BorderStyle = BorderStyle.Fixed3D;
             divider.Location = new System.Drawing.Point(20, 60);
             divider.Size = new System.Drawing.Size(360, 2);
 
-            // ── Description ────────────────────────────────────────────────
+            
             Label lblDesc = new Label();
             lblDesc.Text =
                 "This is an MDI (Multiple Document Interface) application\n" +
@@ -48,7 +45,7 @@ namespace ProductivityTracker
             lblDesc.Size = new System.Drawing.Size(370, 120);
             lblDesc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 
-            // ── Developer ──────────────────────────────────────────────────
+            
             Label lblDev = new Label();
             lblDev.Text = " Developer: [Charl Galinato]";
             lblDev.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
@@ -56,7 +53,7 @@ namespace ProductivityTracker
             lblDev.Size = new System.Drawing.Size(370, 25);
             lblDev.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // ── Version ────────────────────────────────────────────────────
+            
             Label lblVersion = new Label();
             lblVersion.Text = "📌 Version: 1.0.0";
             lblVersion.Font = new System.Drawing.Font("Segoe UI", 10);
@@ -65,7 +62,7 @@ namespace ProductivityTracker
             lblVersion.Size = new System.Drawing.Size(370, 25);
             lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // ── Course ─────────────────────────────────────────────────────
+            
             Label lblCourse = new Label();
             lblCourse.Text = "ICTN05C – Integrative Programming and Technologies\nLyceum of the Philippines – Cavite";
             lblCourse.Font = new System.Drawing.Font("Segoe UI", 9);
@@ -74,7 +71,7 @@ namespace ProductivityTracker
             lblCourse.Size = new System.Drawing.Size(370, 40);
             lblCourse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            // ── Close button ───────────────────────────────────────────────
+           
             Button btnClose = new Button();
             btnClose.Text = "Close";
             btnClose.Location = new System.Drawing.Point(155, 265);
@@ -84,7 +81,7 @@ namespace ProductivityTracker
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Click += (sender, e) => this.Close();
 
-            // ── Add to form ────────────────────────────────────────────────
+           
             this.Controls.Add(lblAppName);
             this.Controls.Add(divider);
             this.Controls.Add(lblDesc);
